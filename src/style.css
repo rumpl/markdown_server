@@ -1,0 +1,323 @@
+/* Modern CSS reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+body {
+    margin: 0;
+    font-family: monospace, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+        Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #e2e8f0;
+    background-color: #1a1b26;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #24283b;
+    color: #7aa2f7;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    color: #7aa2f7;
+}
+
+.home-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: #bb9af7;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.home-link:hover {
+    color: #7aa2f7;
+}
+
+main {
+    flex: 1;
+    padding: 2rem;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.markdown-content {
+    background-color: #1f2335;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* File list styling */
+.file-list {
+    background-color: #1f2335;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.file-list h2 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #414868;
+    color: #7aa2f7;
+}
+
+.file-list ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.file-list li {
+    margin-bottom: 0.75rem;
+}
+
+.file-list a {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: #bb9af7;
+    text-decoration: none;
+    background-color: #24283b;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.file-list a:hover {
+    background-color: #2f354d;
+    transform: translateX(5px);
+    color: #7aa2f7;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #24283b;
+    color: #7aa2f7;
+    font-size: 0.9rem;
+}
+
+/* Markdown content styling */
+.markdown-content h1, 
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4,
+.markdown-content h5,
+.markdown-content h6 {
+    margin-top: 1.5em;
+    margin-bottom: 0.75em;
+    color: #7aa2f7;
+}
+
+.markdown-content h1 {
+    font-size: 2.2rem;
+    border-bottom: 2px solid #414868;
+    padding-bottom: 0.3em;
+}
+
+.markdown-content h2 {
+    font-size: 1.8rem;
+    border-bottom: 1px solid #414868;
+    padding-bottom: 0.3em;
+}
+
+.markdown-content p {
+    margin-bottom: 1.5em;
+}
+
+.markdown-content a {
+    color: #bb9af7;
+    text-decoration: none;
+}
+
+.markdown-content a:hover {
+    text-decoration: underline;
+    color: #7aa2f7;
+}
+
+.markdown-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.markdown-content blockquote {
+    border-left: 4px solid #414868;
+    padding-left: 1rem;
+    margin-left: 0;
+    color: #a9b1d6;
+}
+
+/* GitHub-style alerts */
+.markdown-content blockquote.alert {
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 8px;
+    border-left-width: 4px;
+    border-left-style: solid;
+}
+
+.markdown-content blockquote.alert p:first-child {
+    margin-top: 0;
+}
+
+.markdown-content blockquote.alert p:last-child {
+    margin-bottom: 0;
+}
+
+.markdown-content blockquote.alert-note {
+    background-color: #1b2434;
+    border-left-color: #7aa2f7;
+    color: #a9b1d6;
+}
+
+.markdown-content blockquote.alert-warning {
+    background-color: #2d2214;
+    border-left-color: #e0af68;
+    color: #a9b1d6;
+}
+
+.markdown-content blockquote.alert-important {
+    background-color: #2d1414;
+    border-left-color: #f7768e;
+    color: #a9b1d6;
+}
+
+.markdown-content blockquote.alert-tip {
+    background-color: #1a2b22;
+    border-left-color: #9ece6a;
+    color: #a9b1d6;
+}
+
+.markdown-content blockquote.alert-caution {
+    background-color: #2d2214;
+    border-left-color: #e0af68;
+    color: #a9b1d6;
+}
+
+.markdown-content pre {
+    background-color: #24283b;
+    border-radius: 8px;
+    padding: 1rem;
+    overflow-x: auto;
+}
+
+.markdown-content code {
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.9em;
+    background-color: #24283b;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    color: #7dcfff;
+}
+
+.markdown-content pre code {
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+}
+
+.markdown-content table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 1.5em;
+}
+
+.markdown-content table th,
+.markdown-content table td {
+    border: 1px solid #414868;
+    padding: 0.75rem;
+}
+
+.markdown-content table th {
+    background-color: #24283b;
+    font-weight: 600;
+    color: #7aa2f7;
+}
+
+.markdown-content table tr:nth-child(even) {
+    background-color: #1f2335;
+}
+
+/* Navigation buttons for next/previous steps */
+.markdown-content .nav-button:has(:contains("Previous")),
+.markdown-content .nav-button:has(:contains("Next")) {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    margin: 1rem 0;
+    background-color: #24283b;
+    color: #7aa2f7;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.markdown-content .nav-button:has(:contains("Previous")):hover,
+.markdown-content .nav-button:has(:contains("Next")):hover {
+    background-color: #2f354d;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    text-decoration: none;
+    color: #bb9af7;
+}
+
+.markdown-content .nav-button:has(:contains("Previous")):active,
+.markdown-content .nav-button:has(:contains("Next")):active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Regular links should keep their default styling */
+.markdown-content .nav-button:not(:has(:contains("Previous"))):not(:has(:contains("Next"))) {
+    color: #bb9af7;
+    text-decoration: none;
+}
+
+.markdown-content .nav-button:not(:has(:contains("Previous"))):not(:has(:contains("Next"))):hover {
+    text-decoration: underline;
+    color: #7aa2f7;
+}
+
+/* Navigation container for better spacing */
+.step-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2rem 0;
+    gap: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    header, main, footer {
+        padding: 1rem;
+    }
+    
+    .markdown-content {
+        padding: 1rem;
+    }
+
+    .step-navigation {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .markdown-content .nav-button:not(:has(img)):has(:contains("Previous")),
+    .markdown-content .nav-button:not(:has(img)):has(:contains("Next")) {
+        width: 100%;
+        text-align: center;
+    }
+} 
