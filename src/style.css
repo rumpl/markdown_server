@@ -320,4 +320,34 @@ footer {
         width: 100%;
         text-align: center;
     }
+}
+
+/* Header anchor links */
+.header-anchor {
+    float: left;
+    margin-left: -20px;
+    padding-right: 4px;
+    /* line-height: 1; */
+    opacity: 0;
+    transition: opacity 0.2s;
+    color: #7aa2f7;
+}
+
+.markdown-content h1:hover .header-anchor,
+.markdown-content h2:hover .header-anchor,
+.markdown-content h3:hover .header-anchor,
+.markdown-content h4:hover .header-anchor,
+.markdown-content h5:hover .header-anchor,
+.markdown-content h6:hover .header-anchor {
+    opacity: 1;
+}
+
+/* Add padding to headers to accommodate anchor links */
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4,
+.markdown-content h5,
+.markdown-content h6 {
+    padding-left: 20px;
 } 

@@ -1,7 +1,7 @@
 use actix_files::NamedFile;
 use actix_web::{App, HttpRequest, HttpResponse, HttpServer, Responder, get, web};
 use pulldown_cmark::{CowStr, Event, Options, Parser, Tag, html};
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 use std::fs::{self, File};
 use std::io::{self, Read, Write};
 use std::path::{Path, PathBuf};
@@ -26,6 +26,45 @@ struct AlertState {
     alert_type: Option<String>,
     buffer: String,
     alert_started: bool,
+}
+
+// Add this struct to track header IDs
+#[derive(Default)]
+struct HeaderState {
+    used_ids: HashSet<String>,
+}
+
+impl HeaderState {
+    fn new() -> Self {
+        Self {
+            used_ids: HashSet::new(),
+        }
+    }
+
+    fn generate_id(&mut self, text: &str) -> String {
+        // Convert header text to a valid ID
+        let base_id = text
+            .to_lowercase()
+            .chars()
+            .map(|c| match c {
+                'a'..='z' | '0'..='9' => c,
+                _ => '-',
+            })
+            .collect::<String>()
+            .replace("--", "-")
+            .trim_matches('-')
+            .to_string();
+
+        // Ensure ID uniqueness
+        let mut id = base_id.clone();
+        let mut counter = 1;
+        while self.used_ids.contains(&id) {
+            id = format!("{}-{}", base_id, counter);
+            counter += 1;
+        }
+        self.used_ids.insert(id.clone());
+        id
+    }
 }
 
 fn main() -> io::Result<()> {
@@ -137,12 +176,32 @@ fn scan_and_convert_markdown_files(
 
         // Transform .md links to .html and handle GitHub-style alerts
         let mut alert_state = AlertState::default();
+        let mut header_state = HeaderState::new();
+        let mut current_header_text = String::new();
+        let mut in_header = false;
+
         let parser = parser.map(|event| {
             match event {
+                Event::Start(Tag::Heading(level, _, _)) => {
+                    in_header = true;
+                    current_header_text.clear();
+                    Event::Text(CowStr::from(""))
+                }
+                Event::End(Tag::Heading(level, _, _)) => {
+                    in_header = false;
+                    let id = header_state.generate_id(&current_header_text);
+                    Event::Html(CowStr::from(format!(
+                        "<{0} id=\"{1}\">{2}<a href=\"#{1}\" class=\"header-anchor\" aria-hidden=\"true\">#</a></{0}>",
+                        level, id, current_header_text
+                    )))
+                }
+                Event::Text(text) if in_header => {
+                    current_header_text.push_str(&text);
+                    Event::Text(CowStr::from(""))
+                }
                 Event::Start(Tag::BlockQuote) => {
                     alert_state.in_alert = true;
                     alert_state.buffer.clear();
-                    // Don't emit the blockquote tag yet, wait to see if it's an alert
                     Event::Text(CowStr::from(""))
                 }
                 Event::End(Tag::BlockQuote) => {
